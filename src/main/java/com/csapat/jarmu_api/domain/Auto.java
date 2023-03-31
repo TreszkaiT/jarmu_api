@@ -9,8 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Auto {
+public class Auto implements Comparable<Auto> {
 
     private int id;
     private String name;
+
+    @Override
+    public int compareTo(Auto o) {
+        return name.compareTo(o.name);
+    }
 }
