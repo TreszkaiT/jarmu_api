@@ -10,8 +10,9 @@ public class AutoService {
 
     private AutoRepository autoRepository = new AutoRepository();
 
-    public List<Auto> findAll(){
+    public List<Auto> findAll() {
         return autoRepository.getAll();
+    }
 
     public List<Auto> getAllOrderByName() {
         return autoRepository.getAll()
