@@ -19,8 +19,6 @@ public class MotorService {
                 .collect(Collectors.toList());
     }
 
-    private MotorRepository motorRepository = new MotorRepository();
-
     public List<Motor> getAll() {
         return motorRepository.getAll();
     }
