@@ -1,5 +1,10 @@
 package com.csapat.jarmu_api.repositories;
 
+import com.csapat.jarmu_api.domain.Auto;
+import com.csapat.jarmu_api.domain.Motor;
+
+import java.util.List;
+
 import com.csapat.jarmu_api.domain.Motor;
 
 import java.util.List;

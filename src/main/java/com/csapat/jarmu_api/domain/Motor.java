@@ -9,8 +9,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Motor {
+public class Motor implements Comparable<Motor> {
 
     private int id;
     private String name;
+
+    @Override
+    public int compareTo(Motor o) {
+        return name.compareTo(o.name);
+    }
 }
