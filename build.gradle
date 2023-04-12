@@ -28,3 +28,12 @@ dependencies {
 tasks.named('test') {
     useJUnitPlatform()
 }
+
+// heroku miatt
+bootJar {
+    archiveClassifier.set('boot')
+}
+
+jar {
+    archiveClassifier.set('')
+}
