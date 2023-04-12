@@ -20,7 +20,7 @@ public class AutoContoller {
 
     private AutoService autoService = new AutoService();
 
-    @GetMapping("/get-all-order-by-name")
+    @GetMapping("/get-all-order-by-name-auto")
     public List<Auto> getAllOrderByName() {
         return autoService.getAllOrderByName();
     }

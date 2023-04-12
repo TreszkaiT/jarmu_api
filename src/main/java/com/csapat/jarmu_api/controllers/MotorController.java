@@ -17,7 +17,7 @@ public class MotorController {
 
     private MotorService motorService = new MotorService();
 
-    @GetMapping("/get-all-order-by-name")
+    @GetMapping("/get-all-order-by-name-motor")
     public List<Motor> getAllOrderByName() {
         return motorService.getAllOrderByName();
     }
