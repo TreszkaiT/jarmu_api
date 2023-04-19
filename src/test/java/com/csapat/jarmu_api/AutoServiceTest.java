@@ -24,8 +24,8 @@ public class AutoServiceTest {
         List<Auto> cars = underTest.getAllOrderByName();
 
         assertEquals('a', cars.get(0).getName().charAt(0));
-//        assertEquals('s', cars.get(cars.size()-1).getName().charAt(0));
-        assertEquals('a', cars.get(cars.size()-1).getName().charAt(0));
+        assertEquals('s', cars.get(cars.size()-1).getName().charAt(0));
+//        assertEquals('a', cars.get(cars.size()-1).getName().charAt(0));
 
     }
 }
