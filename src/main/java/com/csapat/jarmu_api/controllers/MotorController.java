@@ -26,4 +26,5 @@ public class MotorController {
     public List<Motor> getAllMotors() {
         return motorService.getAll();
     }
+
 }
