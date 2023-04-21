@@ -1,4 +1,4 @@
-package com.csapat.jarmu_api.domain;
+package com.csapat.jarmu_api.domain.dtos;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,13 +9,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Auto implements Comparable<Auto> {
+public class AutoDTO implements Comparable<AutoDTO> {
 
     private int id;
     private String name;
 
+    private int price;
+
+    private int age;
+
     @Override
-    public int compareTo(Auto o) {
+    public int compareTo(AutoDTO o) {
         return name.compareTo(o.name);
     }
 }
