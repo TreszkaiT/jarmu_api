@@ -1,7 +1,9 @@
 package com.csapat.jarmu_api.services;
 
-import com.csapat.jarmu_api.domain.Auto;
+import com.csapat.jarmu_api.domain.dtos.AutoDTO;
+import com.csapat.jarmu_api.domain.entities.Auto;
 import com.csapat.jarmu_api.repositories.AutoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,16 +11,33 @@ import java.util.stream.Collectors;
 
 @Service
 public class AutoService {
+    @Autowired
+    private AutoRepository autoRepository;
 
-    private AutoRepository autoRepository = new AutoRepository();
+    public List<AutoDTO> findAll() {
+        List<Auto> autoList = autoRepository.findAll();
 
-    public List<Auto> findAll() {
-        return autoRepository.getAll();
+        return autoList.stream().map( (auto) -> {
+            AutoDTO autoDTO = new AutoDTO();
+            autoDTO.setId(auto.getId());
+            autoDTO.setName(auto.getName());
+            autoDTO.setPrice(auto.getPrice());
+            autoDTO.setAge(auto.getAge());
+            return autoDTO;
+        } ).collect(Collectors.toList());
     }
 
-    public List<Auto> getAllOrderByName() {
-        return autoRepository.getAll()
+    public List<AutoDTO> getAllOrderByName() {
+        return autoRepository.findAll()
                 .stream()
+                .map((auto) -> {
+                    AutoDTO autoDTO = new AutoDTO();
+                    autoDTO.setId(auto.getId());
+                    autoDTO.setName(auto.getName());
+                    autoDTO.setPrice(auto.getPrice());
+                    autoDTO.setAge(auto.getAge());
+                    return autoDTO;
+                } )
                 .sorted((a1, a2) -> a1.compareTo(a2))
                 .collect(Collectors.toList());
     }
