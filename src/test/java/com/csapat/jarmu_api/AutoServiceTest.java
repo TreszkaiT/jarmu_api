@@ -21,8 +21,8 @@ public class AutoServiceTest {
     public void getAllOrderByName_withElements_shouldReturnSortedList() {
         List<AutoDTO> cars = underTest.getAllOrderByName();
 
-        assertEquals('a', cars.get(0).getName().charAt(0));
-        assertEquals('s', cars.get(cars.size()-1).getName().charAt(0));
+        assertEquals('B', cars.get(0).getName().charAt(0));
+        assertEquals('T', cars.get(cars.size()-1).getName().charAt(0));
 //        assertEquals('a', cars.get(cars.size()-1).getName().charAt(0));
 
     }
