@@ -25,5 +25,8 @@ public class DatabaseConfiguration {
         Auto auto02 = Auto.builder().name("Trabant").age(35).price(60000).build();
         autoRepository.save(auto02);
 
+        Auto auto03 = Auto.builder().name("Audi").age(35).price(60000).build();
+        autoRepository.save(auto03);
+
     }
 }
