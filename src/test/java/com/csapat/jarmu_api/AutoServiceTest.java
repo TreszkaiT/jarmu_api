@@ -8,10 +8,7 @@ import com.csapat.jarmu_api.repositories.AutoRepository;
 import com.csapat.jarmu_api.services.AutoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -19,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AutoServiceTest {
 
@@ -28,6 +25,9 @@ public class AutoServiceTest {
 
     @InjectMocks
     private AutoService underTest;
+
+    @Captor
+    private ArgumentCaptor<Auto> autoCaptor;
 
     @BeforeEach
     void setup() {
@@ -63,5 +63,30 @@ public class AutoServiceTest {
         AutoDTO autoDTO = underTest.findAutoByName("Mercedes");
 
         assertEquals(autoDTO.getId(), auto.getId());
+    }
+
+    @Test
+    public void findAutoByName_autoNameDoesNotExist_shouldThrowAutoNotFoundException() {
+        Mockito.when(autoRepository.findByName(Mockito.eq("BMW"))).thenReturn(Optional.empty());
+
+        assertThrows(AutoNotFoundException.class, () -> underTest.findAutoByName("BMW"));
+    }
+
+    @Test
+    public void save_validAutoDto_shouldPassValidAutoEntityToRepository() {
+        AutoDTO autoDTO = new AutoDTO();
+        autoDTO.setAge(12);
+        autoDTO.setName("BMW");
+        autoDTO.setPrice(1000);
+
+        underTest.save(autoDTO);
+        Mockito.verify(autoRepository).save(autoCaptor.capture());
+        Auto auto = autoCaptor.getValue();
+
+        assertNull(auto.getId());
+        assertEquals(auto.getName(), autoDTO.getName());
+        assertEquals(auto.getAge(), autoDTO.getAge());
+        assertEquals(auto.getPrice(), autoDTO.getPrice());
+        assertInstanceOf(Auto.class, auto);
     }
 }
