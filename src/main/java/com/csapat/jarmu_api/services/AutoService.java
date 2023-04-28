@@ -84,4 +84,13 @@ public class AutoService {
                 .sorted((a1, a2) -> a1.compareByPriceTo(a2))
                 .collect(Collectors.toList());
     }
+
+    public void save(AutoDTO autoDto) {
+        Auto auto = new Auto();
+        auto.setAge(autoDto.getAge());
+        auto.setName(autoDto.getName());
+        auto.setPrice(autoDto.getPrice());
+
+        autoRepository.save(auto);
+    }
 }
